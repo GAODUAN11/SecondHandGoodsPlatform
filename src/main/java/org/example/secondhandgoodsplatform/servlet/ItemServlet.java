@@ -96,7 +96,7 @@ public class ItemServlet extends HttpServlet {
     private void addItem(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user") == null) {
-response.sendRedirect(request.getContextPath() + "/auth/login");
+            response.sendRedirect(request.getContextPath() + "/auth/login");
             return;
         }
 
@@ -107,7 +107,7 @@ response.sendRedirect(request.getContextPath() + "/auth/login");
 
         if (name == null || description == null || priceStr == null ||
             name.isEmpty() || description.isEmpty() || priceStr.isEmpty()) {
-response.sendRedirect(request.getContextPath() + "/items/add?error=missing_fields");
+            response.sendRedirect(request.getContextPath() + "/items/add?error=missing_fields");
             return;
         }
 
@@ -115,12 +115,12 @@ response.sendRedirect(request.getContextPath() + "/items/add?error=missing_field
             double price = Double.parseDouble(priceStr);
             boolean success = itemService.addItem(name, description, price, user.getId());
             if (success) {
-    response.sendRedirect(request.getContextPath() + "/items/list?success=item_added");
+                response.sendRedirect(request.getContextPath() + "/items/list?success=item_added");
             } else {
-    response.sendRedirect(request.getContextPath() + "/items/add?error=add_failed");
+                response.sendRedirect(request.getContextPath() + "/items/add?error=add_failed");
             }
         } catch (NumberFormatException e) {
-response.sendRedirect(request.getContextPath() + "/items/add?error=invalid_price");
+            response.sendRedirect(request.getContextPath() + "/items/add?error=invalid_price");
         }
     }
 
@@ -139,7 +139,7 @@ response.sendRedirect(request.getContextPath() + "/items/add?error=invalid_price
                 // Handle invalid ID format
             }
         }
-response.sendRedirect(request.getContextPath() + "/items/list?error=item_not_found");
+        response.sendRedirect(request.getContextPath() + "/items/list?error=item_not_found");
     }
 
     private void updateItem(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -154,9 +154,8 @@ response.sendRedirect(request.getContextPath() + "/items/list?error=item_not_fou
         String description = request.getParameter("description");
         String priceStr = request.getParameter("price");
 
-        if (idParam == null || name == null || description == null || priceStr == null ||
-            idParam.isEmpty() || name.isEmpty() || description.isEmpty() || priceStr.isEmpty()) {
-response.sendRedirect(request.getContextPath() + "/items/edit?id=" + idParam + "&error=missing_fields");
+        if (idParam == null || name == null || description == null || priceStr == null || idParam.isEmpty() || name.isEmpty() || description.isEmpty() || priceStr.isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/items/edit?id=" + idParam + "&error=missing_fields");
             return;
         }
 
@@ -165,12 +164,12 @@ response.sendRedirect(request.getContextPath() + "/items/edit?id=" + idParam + "
             double price = Double.parseDouble(priceStr);
             boolean success = itemService.updateItem(id, name, description, price);
             if (success) {
-    response.sendRedirect(request.getContextPath() + "/items/list?success=item_updated");
+                response.sendRedirect(request.getContextPath() + "/items/list?success=item_updated");
             } else {
-    response.sendRedirect(request.getContextPath() + "/items/edit?id=" + idParam + "&error=update_failed");
+                response.sendRedirect(request.getContextPath() + "/items/edit?id=" + idParam + "&error=update_failed");
             }
         } catch (NumberFormatException e) {
-response.sendRedirect(request.getContextPath() + "/items/edit?id=" + idParam + "&error=invalid_format");
+            response.sendRedirect(request.getContextPath() + "/items/edit?id=" + idParam + "&error=invalid_format");
         }
     }
 
@@ -187,15 +186,15 @@ response.sendRedirect(request.getContextPath() + "/items/edit?id=" + idParam + "
                 int id = Integer.parseInt(idParam);
                 boolean success = itemService.deleteItem(id);
                 if (success) {
-        response.sendRedirect(request.getContextPath() + "/items/list?success=item_deleted");
+                    response.sendRedirect(request.getContextPath() + "/items/list?success=item_deleted");
                 } else {
-        response.sendRedirect(request.getContextPath() + "/items/list?error=delete_failed");
+                    response.sendRedirect(request.getContextPath() + "/items/list?error=delete_failed");
                 }
                 return;
             } catch (NumberFormatException e) {
                 // Handle invalid ID format
             }
         }
-response.sendRedirect(request.getContextPath() + "/items/list?error=invalid_id");
+        response.sendRedirect(request.getContextPath() + "/items/list?error=invalid_id");
     }
 }

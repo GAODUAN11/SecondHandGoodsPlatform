@@ -137,9 +137,6 @@ CREATE TABLE IF NOT EXISTS items (
 - **服务器**: Apache Tomcat
 - **加密算法**: SHA-256
 
-## 注意事项
-
-1. 系统不使用任何第三方框架，完全基于原生Java EE技术实现
-2. 前端CSS和JavaScript文件分离存放，便于维护
-3. 所有数据库操作均通过DAO层进行，保证数据访问的一致性和安全性
-4. 系统具有良好的扩展性，可根据需要添加新功能模块
+## 测试账户
+user：GD
+password：12346

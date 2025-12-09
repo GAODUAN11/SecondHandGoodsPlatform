@@ -49,17 +49,16 @@ public class AuthServlet extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
-        if (username == null || password == null || email == null ||
-            username.isEmpty() || password.isEmpty() || email.isEmpty()) {
-response.sendRedirect(request.getContextPath() + "/auth/register?error=missing_fields");
+        if (username == null || password == null || email == null || username.isEmpty() || password.isEmpty() || email.isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/auth/register?error=missing_fields");
             return;
         }
 
         boolean success = userService.registerUser(username, password, email);
         if (success) {
-response.sendRedirect(request.getContextPath() + "/auth/login?success=registered");
+            response.sendRedirect(request.getContextPath() + "/auth/login?success=registered");
         } else {
-response.sendRedirect(request.getContextPath() + "/auth/register?error=user_exists");
+            response.sendRedirect(request.getContextPath() + "/auth/register?error=user_exists");
         }
     }
 
@@ -68,7 +67,7 @@ response.sendRedirect(request.getContextPath() + "/auth/register?error=user_exis
         String password = request.getParameter("password");
 
         if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
-response.sendRedirect(request.getContextPath() + "/auth/login?error=missing_fields");
+            response.sendRedirect(request.getContextPath() + "/auth/login?error=missing_fields");
             return;
         }
 
@@ -76,9 +75,9 @@ response.sendRedirect(request.getContextPath() + "/auth/login?error=missing_fiel
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
         } else {
-response.sendRedirect(request.getContextPath() + "/auth/login?error=invalid_credentials");
+            response.sendRedirect(request.getContextPath() + "/auth/login?error=invalid_credentials");
         }
     }
 
@@ -87,6 +86,6 @@ response.sendRedirect(request.getContextPath() + "/auth/login?error=invalid_cred
         if (session != null) {
             session.invalidate();
         }
-response.sendRedirect(request.getContextPath() + "/index.jsp");
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
     }
 }

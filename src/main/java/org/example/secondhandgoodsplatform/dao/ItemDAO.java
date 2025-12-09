@@ -2,6 +2,7 @@ package org.example.secondhandgoodsplatform.dao;
 
 import org.example.secondhandgoodsplatform.model.Item;
 import org.example.secondhandgoodsplatform.model.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +41,11 @@ public class ItemDAO {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 Item item = new Item(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getDouble("price"),
-                    rs.getInt("user_id")
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getDouble("price"),
+                        rs.getInt("user_id")
                 );
                 item.setOwnerName(rs.getString("owner_name"));
                 return item;
@@ -63,11 +64,11 @@ public class ItemDAO {
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 Item item = new Item(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getDouble("price"),
-                    rs.getInt("user_id")
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getDouble("price"),
+                        rs.getInt("user_id")
                 );
                 item.setOwnerName(rs.getString("owner_name"));
                 items.add(item);
@@ -89,11 +90,11 @@ public class ItemDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Item item = new Item(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getDouble("price"),
-                    rs.getInt("user_id")
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getDouble("price"),
+                        rs.getInt("user_id")
                 );
                 item.setOwnerName(rs.getString("owner_name"));
                 items.add(item);
@@ -141,11 +142,11 @@ public class ItemDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Item item = new Item(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getDouble("price"),
-                    rs.getInt("user_id")
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getDouble("price"),
+                        rs.getInt("user_id")
                 );
                 item.setOwnerName(rs.getString("owner_name"));
                 items.add(item);
